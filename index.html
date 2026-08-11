@@ -1,0 +1,2279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calvalue Techno Services OPC Pvt Ltd | Precision Calibration & Metrology</title>
+    <meta name="description" content="NABL Accredited ISO/IEC 17025:2017 calibration laboratory offering precision mechanical, thermal, electro-technical, and dimensional calibration services across India.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================================
+           DESIGN SYSTEM — CSS CUSTOM PROPERTIES
+           ============================================================ */
+        :root {
+            /* Color Palette — Deep Navy/Indigo + Electric Accents */
+            --bg-primary: #04080F;
+            --bg-secondary: #0A1128;
+            --bg-tertiary: #111D3A;
+            --bg-card: rgba(16, 28, 56, 0.55);
+            --bg-card-hover: rgba(22, 38, 72, 0.7);
+
+            --text-primary: #F1F5F9;
+            --text-secondary: #CBD5E1;
+            --text-muted: #8494B0;
+            --white: #ffffff;
+
+            --accent-primary: #00D4FF;
+            --accent-secondary: #7C3AED;
+            --accent-tertiary: #06D6A0;
+            --accent-warm: #FF6B6B;
+            --accent-gold: #FFD93D;
+
+            --gradient-hero: linear-gradient(135deg, #00D4FF 0%, #7C3AED 50%, #FF6B6B 100%);
+            --gradient-accent: linear-gradient(135deg, #00D4FF, #7C3AED);
+            --gradient-warm: linear-gradient(135deg, #FF6B6B, #FFD93D);
+            --gradient-aurora: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(124,58,237,0.1), rgba(6,214,160,0.08));
+
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-border-hover: rgba(0, 212, 255, 0.3);
+
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+            --shadow-md: 0 8px 32px rgba(0,0,0,0.4);
+            --shadow-lg: 0 16px 48px rgba(0,0,0,0.5);
+            --shadow-glow: 0 0 40px rgba(0,212,255,0.2);
+            --shadow-glow-purple: 0 0 40px rgba(124,58,237,0.2);
+
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --radius-full: 9999px;
+
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-normal: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Space Grotesk', 'Inter', sans-serif;
+
+            --whatsapp: #25D366;
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-fast);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1240px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* ============================================================
+           SCROLL PROGRESS BAR
+           ============================================================ */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--gradient-hero);
+            z-index: 10001;
+            width: 0%;
+            transition: none;
+        }
+
+        /* ============================================================
+           CUSTOM CURSOR GLOW (Desktop Only)
+           ============================================================ */
+        .cursor-glow {
+            position: fixed;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s;
+            will-change: transform;
+        }
+
+        /* ============================================================
+           PARTICLE CANVAS
+           ============================================================ */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ============================================================
+           KEYFRAME ANIMATIONS
+           ============================================================ */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-12px) rotate(1deg); }
+            66% { transform: translateY(6px) rotate(-1deg); }
+        }
+
+        @keyframes pulseRing {
+            0% { box-shadow: 0 0 0 0 rgba(0,212,255,0.5); }
+            70% { box-shadow: 0 0 0 18px rgba(0,212,255,0); }
+            100% { box-shadow: 0 0 0 0 rgba(0,212,255,0); }
+        }
+
+        @keyframes shimmerSlide {
+            0% { transform: translateX(-100%) skewX(-20deg); }
+            100% { transform: translateX(250%) skewX(-20deg); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes morphBlob {
+            0%,100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            50% { border-radius: 40% 60% 50% 60% / 30% 50% 70% 40%; }
+            75% { border-radius: 60% 30% 40% 70% / 60% 40% 60% 30%; }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blinkCaret {
+            0%, 50% { border-right-color: var(--accent-primary); }
+            51%, 100% { border-right-color: transparent; }
+        }
+
+        @keyframes heroSlide {
+            0% { opacity: 0; transform: scale(1); }
+            8% { opacity: 1; }
+            33% { opacity: 1; }
+            41% { opacity: 0; transform: scale(1.06); }
+            100% { opacity: 0; transform: scale(1.06); }
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { border-color: rgba(0,212,255,0.2); }
+            50% { border-color: rgba(124,58,237,0.4); }
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes rotateIn {
+            from { opacity: 0; transform: rotate(-10deg) scale(0.9); }
+            to { opacity: 1; transform: rotate(0) scale(1); }
+        }
+
+        @keyframes lineGrow {
+            from { transform: scaleY(0); }
+            to { transform: scaleY(1); }
+        }
+
+        @keyframes dotPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0,212,255,0.4); }
+            50% { transform: scale(1.2); box-shadow: 0 0 0 8px rgba(0,212,255,0); }
+        }
+
+        /* ============================================================
+           SCROLL REVEAL CLASSES
+           ============================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal-left.active { opacity: 1; transform: translateX(0); }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal-right.active { opacity: 1; transform: translateX(0); }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.85);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal-scale.active { opacity: 1; transform: scale(1); }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+
+        /* ============================================================
+           UTILITY CLASSES
+           ============================================================ */
+        .gradient-text {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-hero {
+            background: var(--gradient-hero);
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-primary);
+            margin-bottom: 16px;
+        }
+        .section-label::before {
+            content: '';
+            width: 32px;
+            height: 2px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        /* ============================================================
+           BUTTONS
+           ============================================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 36px;
+            border-radius: var(--radius-full);
+            font-family: var(--font-primary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-bounce);
+            letter-spacing: 0.3px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-accent);
+            color: var(--white);
+            box-shadow: 0 4px 24px rgba(0,212,255,0.3);
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transform: skewX(-20deg);
+            animation: shimmerSlide 4s infinite;
+        }
+        .btn-primary:hover {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 8px 40px rgba(0,212,255,0.45);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent-primary);
+            border: 2px solid rgba(0,212,255,0.4);
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background: rgba(0,212,255,0.1);
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s;
+        }
+        .btn:hover .btn-icon {
+            transform: translateX(4px);
+        }
+
+        /* ============================================================
+           HEADER & NAVIGATION
+           ============================================================ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10000;
+            padding: 20px 0;
+            transition: var(--transition-normal);
+        }
+
+        header.scrolled {
+            padding: 12px 0;
+            background: rgba(4, 8, 15, 0.88);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+        .logo:hover { opacity: 0.85; }
+
+        .logo-img-wrapper {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--white);
+            padding: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(0,212,255,0.3);
+            transition: var(--transition-bounce);
+            overflow: hidden;
+        }
+        .logo:hover .logo-img-wrapper {
+            transform: rotate(180deg) scale(1.05);
+            box-shadow: 0 0 30px rgba(124,58,237,0.4);
+        }
+        .logo-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+        .logo-text-group {
+            line-height: 1.2;
+        }
+        .logo-name {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 0.5px;
+        }
+        .logo-tagline {
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Nav */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+        }
+        nav ul li a {
+            display: block;
+            padding: 8px 18px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-radius: var(--radius-full);
+            position: relative;
+            transition: var(--transition-fast);
+        }
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+            transition: var(--transition-normal);
+            transform: translateX(-50%);
+        }
+        nav ul li a:hover {
+            color: var(--accent-primary);
+        }
+        nav ul li a:hover::before {
+            width: 60%;
+        }
+        nav ul li a.active-link {
+            color: var(--accent-primary);
+            background: rgba(0,212,255,0.08);
+        }
+
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 10002;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            width: 26px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: var(--transition-normal);
+            display: block;
+        }
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+            background: var(--accent-primary);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+            background: var(--accent-primary);
+        }
+
+        /* ============================================================
+           HERO SECTION
+           ============================================================ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 140px 20px 100px;
+            overflow: hidden;
+        }
+
+        /* Background image slider */
+        .hero-bg-slider {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            animation: heroSlide 18s infinite;
+        }
+        .hero-slide:nth-child(1) {
+            background-image: url('https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=1920&q=80');
+            animation-delay: 0s;
+        }
+        .hero-slide:nth-child(2) {
+            background-image: url('https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=1920&q=80');
+            animation-delay: 6s;
+        }
+        .hero-slide:nth-child(3) {
+            background-image: url('https://images.unsplash.com/photo-1574689049596-1e68b8567347?auto=format&fit=crop&w=1920&q=80');
+            animation-delay: 12s;
+        }
+
+        /* Overlays */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                rgba(4,8,15,0.92) 0%,
+                rgba(10,17,40,0.8) 40%,
+                rgba(4,8,15,0.95) 100%
+            );
+            z-index: 1;
+        }
+        .hero-grid-overlay {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 2;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+        }
+
+        /* Aurora blobs */
+        .hero-aurora {
+            position: absolute;
+            z-index: 1;
+            filter: blur(80px);
+            opacity: 0.35;
+            animation: morphBlob 15s ease-in-out infinite;
+        }
+        .hero-aurora-1 {
+            top: 10%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-primary), transparent 70%);
+        }
+        .hero-aurora-2 {
+            bottom: 5%;
+            right: -5%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-secondary), transparent 70%);
+            animation-delay: -5s;
+        }
+        .hero-aurora-3 {
+            top: 50%;
+            left: 40%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent-tertiary), transparent 70%);
+            animation-delay: -10s;
+            opacity: 0.2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            max-width: 880px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: rgba(0,212,255,0.08);
+            border: 1px solid rgba(0,212,255,0.25);
+            border-radius: var(--radius-full);
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            animation: pulseRing 2.5s infinite, fadeInUp 0.8s ease forwards;
+        }
+        .hero-badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+        .hero h1 .line-2 {
+            display: block;
+        }
+
+        .hero-description {
+            font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+            color: var(--text-secondary);
+            margin-bottom: 44px;
+            max-width: 620px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        /* Hero Stats Bar */
+        .hero-stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 70px;
+            padding-top: 40px;
+            border-top: 1px solid var(--glass-border);
+            animation: fadeInUp 0.8s ease 0.8s both;
+        }
+        .hero-stat {
+            text-align: center;
+        }
+        .hero-stat-number {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .hero-stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+        }
+        .stat-divider {
+            width: 1px;
+            height: 40px;
+            background: var(--glass-border);
+        }
+
+        /* ============================================================
+           NABL / ACCREDITATION SECTION
+           ============================================================ */
+        .section {
+            padding: 110px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+            margin: 0;
+        }
+
+        /* Aurora orbs for sections */
+        .section-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .orb-cyan {
+            width: 400px;
+            height: 400px;
+            background: rgba(0,212,255,0.08);
+        }
+        .orb-purple {
+            width: 500px;
+            height: 500px;
+            background: rgba(124,58,237,0.06);
+        }
+        .orb-green {
+            width: 350px;
+            height: 350px;
+            background: rgba(6,214,160,0.06);
+        }
+
+        /* NABL Content */
+        .nabl-card {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 60px;
+            align-items: center;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 50px;
+            position: relative;
+            z-index: 2;
+            transition: var(--transition-normal);
+        }
+        .nabl-card:hover {
+            border-color: var(--glass-border-hover);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-4px);
+        }
+
+        .certificate-wrapper {
+            position: relative;
+        }
+        .certificate-img {
+            width: 280px;
+            height: auto;
+            border-radius: var(--radius-md);
+            border: 2px solid rgba(0,212,255,0.25);
+            box-shadow: var(--shadow-glow);
+            transition: var(--transition-bounce);
+            animation: float 8s ease-in-out infinite;
+        }
+        .certificate-wrapper:hover .certificate-img {
+            transform: scale(1.03);
+            box-shadow: 0 0 50px rgba(0,212,255,0.35);
+        }
+        .certificate-badge {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: var(--gradient-accent);
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nabl-info h2 {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        .nabl-info > p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .accreditation-details {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+        .accreditation-details li {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 20px;
+            background: rgba(255,255,255,0.03);
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--accent-primary);
+            font-size: 1rem;
+            transition: var(--transition-fast);
+        }
+        .accreditation-details li:hover {
+            background: rgba(0,212,255,0.05);
+            transform: translateX(6px);
+        }
+        .accreditation-details li strong {
+            color: var(--accent-primary);
+            font-weight: 600;
+            min-width: 140px;
+        }
+
+        /* ============================================================
+           SERVICES SECTION
+           ============================================================ */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 28px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-bounce);
+            cursor: default;
+        }
+
+        /* Top border gradient line */
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* Hover shine effect */
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -80%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+            transform: skewX(-20deg);
+            transition: left 0.6s ease;
+        }
+        .service-card:hover::after {
+            left: 130%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: var(--glass-border-hover);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4), var(--shadow-glow);
+            background: var(--bg-card-hover);
+        }
+
+        .service-icon-wrapper {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-md);
+            background: rgba(0,212,255,0.08);
+            border: 1px solid rgba(0,212,255,0.15);
+            color: var(--accent-primary);
+            transition: var(--transition-bounce);
+            position: relative;
+            z-index: 1;
+        }
+        .service-card:hover .service-icon-wrapper {
+            background: var(--gradient-accent);
+            color: var(--white);
+            transform: scale(1.1) rotate(6deg);
+            border-color: transparent;
+            box-shadow: 0 8px 24px rgba(0,212,255,0.3);
+        }
+
+        .service-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           PROCESS / TIMELINE SECTION
+           ============================================================ */
+        .process-timeline {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Central vertical line */
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 28px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+            transform-origin: top;
+        }
+
+        .timeline-step {
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+            position: relative;
+            padding-bottom: 48px;
+        }
+        .timeline-step:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-dot {
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            border-radius: 50%;
+            background: var(--gradient-accent);
+            border: 3px solid var(--bg-primary);
+            box-shadow: 0 0 0 3px rgba(0,212,255,0.3);
+            margin-top: 4px;
+            position: relative;
+            z-index: 2;
+            transition: var(--transition-normal);
+        }
+        .timeline-step:hover .timeline-dot {
+            animation: dotPulse 1.5s infinite;
+            transform: scale(1.2);
+        }
+
+        .timeline-dot-number {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 28px;
+            transition: var(--transition-normal);
+        }
+        .timeline-content:hover {
+            border-color: var(--glass-border-hover);
+            box-shadow: var(--shadow-glow);
+            transform: translateX(6px);
+        }
+
+        .timeline-step-number {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .timeline-content h4 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+        .timeline-content p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+        }
+
+        /* ============================================================
+           WHY CHOOSE US / FEATURES
+           ============================================================ */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-card {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            padding: 28px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            transition: var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,212,255,0.03) 0%, transparent 60%);
+            opacity: 0;
+            transition: var(--transition-normal);
+        }
+        .feature-card:hover::before { opacity: 1; }
+        .feature-card:hover {
+            transform: translateY(-6px) translateX(4px);
+            border-color: rgba(0,212,255,0.2);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        .feature-icon-box {
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-sm);
+            background: rgba(0,212,255,0.08);
+            color: var(--accent-primary);
+            transition: var(--transition-normal);
+        }
+        .feature-card:hover .feature-icon-box {
+            background: var(--gradient-accent);
+            color: var(--white);
+            transform: rotate(-4deg) scale(1.08);
+        }
+
+        .feature-text h4 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--white);
+        }
+        .feature-text p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           CONTACT SECTION
+           ============================================================ */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 40px 30px;
+            text-align: center;
+            transition: var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-aurora);
+            opacity: 0;
+            transition: var(--transition-normal);
+        }
+        .contact-card:hover::before { opacity: 1; }
+        .contact-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--glass-border-hover);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .contact-icon-circle {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(0,212,255,0.08);
+            border: 1px solid rgba(0,212,255,0.15);
+            color: var(--accent-primary);
+            transition: var(--transition-bounce);
+            position: relative;
+            z-index: 1;
+        }
+        .contact-card:hover .contact-icon-circle {
+            background: var(--gradient-accent);
+            color: var(--white);
+            transform: scale(1.1);
+            box-shadow: 0 8px 24px rgba(0,212,255,0.3);
+        }
+
+        .contact-card h4 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--white);
+            position: relative;
+            z-index: 1;
+        }
+        .contact-card p,
+        .contact-card a {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        .contact-card a:hover {
+            color: var(--accent-primary);
+        }
+
+        .contact-cta {
+            text-align: center;
+            margin-top: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Google Maps embed */
+        .map-container {
+            margin-top: 60px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            position: relative;
+            z-index: 2;
+            box-shadow: var(--shadow-lg);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 320px;
+            border: none;
+            filter: grayscale(30%) contrast(1.1) brightness(0.9);
+            transition: var(--transition-normal);
+        }
+        .map-container:hover iframe {
+            filter: grayscale(0%) contrast(1) brightness(1);
+        }
+
+        /* ============================================================
+           WHATSAPP FLOATING BUTTON
+           ============================================================ */
+        .whatsapp-fab {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 24px;
+            background: var(--whatsapp);
+            color: var(--white);
+            border-radius: var(--radius-full);
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+            transition: var(--transition-bounce);
+            animation: float 5s ease-in-out infinite;
+        }
+        .whatsapp-fab:hover {
+            background: #1ebe57;
+            transform: scale(1.08) translateY(-4px);
+            box-shadow: 0 10px 36px rgba(37,211,102,0.5);
+            animation: none;
+            color: var(--white);
+        }
+        .whatsapp-fab svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        footer {
+            background: rgba(4,8,15,0.95);
+            border-top: 1px solid var(--glass-border);
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        .footer-links a {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .footer-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+        .footer-social a {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            transition: var(--transition-bounce);
+        }
+        .footer-social a:hover {
+            background: var(--gradient-accent);
+            border-color: transparent;
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* ============================================================
+           SCROLL TO TOP BUTTON
+           ============================================================ */
+        .scroll-top {
+            position: fixed;
+            bottom: 28px;
+            left: 28px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 9999;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition-bounce);
+            backdrop-filter: blur(10px);
+        }
+        .scroll-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .scroll-top:hover {
+            background: var(--gradient-accent);
+            color: var(--white);
+            border-color: transparent;
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 992px) {
+            .nabl-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 32px;
+            }
+            .certificate-wrapper {
+                display: flex;
+                justify-content: center;
+            }
+            .certificate-img {
+                width: 240px;
+            }
+            .accreditation-details li {
+                flex-direction: column;
+                text-align: center;
+                gap: 4px;
+            }
+            .accreditation-details li strong {
+                min-width: unset;
+            }
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+            .hero-stats {
+                gap: 28px;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: rgba(4,8,15,0.96);
+                backdrop-filter: blur(20px);
+                padding: 100px 30px 30px;
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                border-left: 1px solid var(--glass-border);
+                z-index: 10001;
+            }
+            nav.active { right: 0; }
+            nav ul {
+                flex-direction: column;
+                gap: 4px;
+            }
+            nav ul li a {
+                padding: 14px 20px;
+                font-size: 1rem;
+                border-radius: var(--radius-sm);
+            }
+            nav ul li a:hover {
+                background: rgba(0,212,255,0.06);
+            }
+            nav ul li a::before { display: none; }
+
+            .hero {
+                padding: 140px 20px 80px;
+                min-height: auto;
+            }
+            .hero h1 {
+                font-size: clamp(2rem, 8vw, 3rem);
+            }
+            .hero-stats {
+                gap: 20px;
+            }
+            .hero-stat-number {
+                font-size: 1.8rem;
+            }
+            .stat-divider { height: 30px; }
+
+            .section { padding: 70px 0; }
+            .nabl-card { padding: 30px; }
+            .whatsapp-label { display: none; }
+            .whatsapp-fab {
+                padding: 14px;
+                border-radius: 50%;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .cursor-glow { display: none; }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .process-timeline::before {
+                left: 8px;
+            }
+            .timeline-dot {
+                width: 16px;
+                height: 16px;
+                min-width: 16px;
+            }
+            .timeline-step {
+                gap: 20px;
+            }
+            .timeline-content {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            .hero-actions .btn {
+                width: 100%;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================================
+           MOBILE NAV OVERLAY
+           ============================================================ */
+        .nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .nav-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* ============================================================
+           3D TILT EFFECT ON CARDS (data attribute)
+           ============================================================ */
+        [data-tilt] {
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Cursor Glow -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- ===== HEADER ===== -->
+    <header id="mainHeader">
+        <div class="container header-inner">
+            <div class="logo" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+                <div class="logo-img-wrapper">
+                    <img src="image_a905d5.png" alt="Calvalue Techno Services Logo">
+                </div>
+                <div class="logo-text-group">
+                    <div class="logo-name">Calvalue Techno Services</div>
+                    <div class="logo-tagline gradient-text">OPC Pvt Ltd</div>
+                </div>
+            </div>
+
+            <div class="menu-toggle" id="menuToggle">
+                <span></span><span></span><span></span>
+            </div>
+
+            <nav id="navMenu">
+                <ul>
+                    <li><a href="#" class="active-link">Home</a></li>
+                    <li><a href="#accreditation">Accreditation</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="heroSection">
+        <div class="hero-bg-slider">
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-grid-overlay"></div>
+        <div class="hero-aurora hero-aurora-1"></div>
+        <div class="hero-aurora hero-aurora-2"></div>
+        <div class="hero-aurora hero-aurora-3"></div>
+
+        <div class="container hero-content">
+            <div class="hero-badge">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                ISO/IEC 17025:2017 Accredited
+            </div>
+
+            <h1>
+                Precision Calibration
+                <span class="line-2"><span class="gradient-text-hero">Redefined.</span></span>
+            </h1>
+
+            <p class="hero-description">
+                Delivering world-class metrology services with unmatched accuracy, strict compliance, and reliable results for your most critical industrial instruments.
+            </p>
+
+            <div class="hero-actions">
+                <a href="mailto:salescalvalue@gmail.com?subject=Request%20for%20Quote" class="btn btn-primary" id="heroQuoteBtn">
+                    Get a Quote
+                    <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+                <a href="#services" class="btn btn-outline">
+                    Explore Services
+                </a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-number gradient-text" data-count="500">0+</div>
+                    <div class="hero-stat-label">Instruments Calibrated</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number gradient-text" data-count="150">0+</div>
+                    <div class="hero-stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number gradient-text" data-count="99">0%</div>
+                    <div class="hero-stat-label">Accuracy Rate</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number gradient-text" data-count="4">0+</div>
+                    <div class="hero-stat-label">Disciplines</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== NABL ACCREDITATION ===== -->
+    <section class="section" id="accreditation">
+        <div class="section-orb orb-cyan" style="top:-80px; left:-120px;"></div>
+        <div class="section-orb orb-purple" style="bottom:-100px; right:-80px;"></div>
+
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">Accreditation</div>
+                <h2 class="section-title"><span class="gradient-text">NABL</span> Accredited Laboratory</h2>
+                <p class="section-subtitle">Formally recognized for demonstrating exceptional technical competence, ensuring the highest level of trust in our testing and calibration facilities.</p>
+            </div>
+
+            <div class="nabl-card reveal" data-tilt>
+                <div class="certificate-wrapper reveal-left stagger-1">
+                    <img src="Calvalue%20Nabl%20Certificate.png" alt="NABL Accreditation Certificate" class="certificate-img">
+                    <span class="certificate-badge">Verified ✓</span>
+                </div>
+                <div class="nabl-info reveal-right stagger-2">
+                    <h2>Certificate of <span class="gradient-text">Accreditation</span></h2>
+                    <p>Our NABL accreditation signifies our unwavering commitment to precision, quality, and international best practices in calibration and testing.</p>
+
+                    <ul class="accreditation-details">
+                        <li><strong>Standard</strong> ISO/IEC 17025:2017</li>
+                        <li><strong>Certificate No.</strong> CC-4242</li>
+                        <li><strong>Valid Until</strong> 26 January 2029</li>
+                        <li><strong>Scope</strong> Mechanical, Thermal, Electro-Technical, Dimensional</li>
+                    </ul>
+
+                    <a href="Calvalue%20Nabl%20Certificate.png" target="_blank" class="btn btn-outline">
+                        View Full Certificate
+                        <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== SERVICES ===== -->
+    <section class="section" id="services">
+        <div class="section-orb orb-purple" style="top:50px; right:-150px;"></div>
+        <div class="section-orb orb-green" style="bottom:-50px; left:-100px;"></div>
+
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">Our Expertise</div>
+                <h2 class="section-title">Calibration <span class="gradient-text">Capabilities</span></h2>
+                <p class="section-subtitle">Comprehensive metrology solutions spanning four major disciplines, backed by NABL accreditation and cutting-edge equipment.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card reveal stagger-1" data-tilt>
+                    <div class="service-icon-wrapper">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="32" height="32"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <h3>Mechanical</h3>
+                    <p>Precision calibration for pressure gauges, torque wrenches, weighing scales, and mass standards with traceable accuracy.</p>
+                </div>
+
+                <div class="service-card reveal stagger-2" data-tilt>
+                    <div class="service-icon-wrapper">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="32" height="32"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                    <h3>Thermal</h3>
+                    <p>Reliable temperature mapping and calibration for thermometers, ovens, furnaces, RTD sensors, and thermocouples.</p>
+                </div>
+
+                <div class="service-card reveal stagger-3" data-tilt>
+                    <div class="service-icon-wrapper">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="32" height="32"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3>Electro-Technical</h3>
+                    <p>Accurate measurement testing for multimeters, clamp meters, power supplies, and insulation testers.</p>
+                </div>
+
+                <div class="service-card reveal stagger-4" data-tilt>
+                    <div class="service-icon-wrapper">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="32" height="32"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                    </div>
+                    <h3>Dimensional</h3>
+                    <p>Verification for micrometers, vernier calipers, gauge blocks, and dial gauges using advanced master equipment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== PROCESS / TIMELINE ===== -->
+    <section class="section" id="process">
+        <div class="section-orb orb-cyan" style="top:40%; right:-100px;"></div>
+
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">How It Works</div>
+                <h2 class="section-title">Our Calibration <span class="gradient-text">Process</span></h2>
+                <p class="section-subtitle">A streamlined, transparent workflow designed to deliver precision results with minimal downtime for your operations.</p>
+            </div>
+
+            <div class="process-timeline">
+                <div class="timeline-step reveal stagger-1">
+                    <div class="timeline-dot"><span class="timeline-dot-number">1</span></div>
+                    <div class="timeline-content">
+                        <div class="timeline-step-number">Step 01</div>
+                        <h4>Instrument Receipt & Inspection</h4>
+                        <p>Your instruments are received, logged, and thoroughly inspected for condition assessment and calibration readiness.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-step reveal stagger-2">
+                    <div class="timeline-dot"><span class="timeline-dot-number">2</span></div>
+                    <div class="timeline-content">
+                        <div class="timeline-step-number">Step 02</div>
+                        <h4>Precision Calibration</h4>
+                        <p>Expert technicians perform calibration using traceable reference standards in our climate-controlled, NABL-accredited lab.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-step reveal stagger-3">
+                    <div class="timeline-dot"><span class="timeline-dot-number">3</span></div>
+                    <div class="timeline-content">
+                        <div class="timeline-step-number">Step 03</div>
+                        <h4>Certificate Generation</h4>
+                        <p>Detailed calibration certificates are generated with measurement data, uncertainty analysis, and full traceability information.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-step reveal stagger-4">
+                    <div class="timeline-dot"><span class="timeline-dot-number">4</span></div>
+                    <div class="timeline-content">
+                        <div class="timeline-step-number">Step 04</div>
+                        <h4>Delivery & Support</h4>
+                        <p>Calibrated instruments and certificates are delivered promptly, with ongoing support for re-calibration scheduling.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== WHY CHOOSE US ===== -->
+    <section class="section" id="about">
+        <div class="section-orb orb-green" style="top:0; left:-120px;"></div>
+        <div class="section-orb orb-purple" style="bottom:-80px; right:10%;"></div>
+
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">Our Strengths</div>
+                <h2 class="section-title">Why Partner <span class="gradient-text">With Us?</span></h2>
+                <p class="section-subtitle">Trusted by industries nationwide for our rigorous standards, rapid turnaround, and unwavering commitment to excellence.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card reveal stagger-1">
+                    <div class="feature-icon-box">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div class="feature-text">
+                        <h4>Certified Traceability</h4>
+                        <p>All calibrations strictly traceable to national and international measurement standards (NABL, NPL).</p>
+                    </div>
+                </div>
+
+                <div class="feature-card reveal stagger-2">
+                    <div class="feature-icon-box">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div class="feature-text">
+                        <h4>Rapid Turnaround</h4>
+                        <p>Minimizing your downtime with highly efficient in-lab and on-site metrology services delivered on schedule.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card reveal stagger-3">
+                    <div class="feature-icon-box">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div class="feature-text">
+                        <h4>Expert Technicians</h4>
+                        <p>Our dedicated team is highly trained in diverse and complex metrology disciplines with years of experience.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card reveal stagger-4">
+                    <div class="feature-icon-box">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </div>
+                    <div class="feature-text">
+                        <h4>Audit-Ready Reports</h4>
+                        <p>Comprehensive calibration certificates with detailed measurement data, provided promptly for compliance.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card reveal stagger-5">
+                    <div class="feature-icon-box">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div class="feature-text">
+                        <h4>Pan-India Service</h4>
+                        <p>On-site calibration services available across India, bringing precision measurement directly to your facility.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card reveal stagger-5">
+                    <div class="feature-icon-box">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </div>
+                    <div class="feature-text">
+                        <h4>Data Security</h4>
+                        <p>Your calibration data and instrument information are handled with strict confidentiality and secure protocols.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section" id="contact">
+        <div class="section-orb orb-cyan" style="top:-60px; right:20%;"></div>
+
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">Get In Touch</div>
+                <h2 class="section-title"><span class="gradient-text">Connect</span> With Us</h2>
+                <p class="section-subtitle">Ready to ensure your instruments meet the highest standards? Reach out to our team for a consultation or quote.</p>
+            </div>
+
+            <div class="contact-layout">
+                <div class="contact-card reveal stagger-1" data-tilt>
+                    <div class="contact-icon-circle">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <h4>Head Office</h4>
+                    <p>MTC Nagar, Kattankolatur R.F.,<br>Tamil Nadu 603209, India</p>
+                </div>
+
+                <div class="contact-card reveal stagger-2" data-tilt>
+                    <div class="contact-icon-circle">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h4>Email Us</h4>
+                    <a href="mailto:salescalvalue@gmail.com">salescalvalue@gmail.com</a>
+                </div>
+
+                <div class="contact-card reveal stagger-3" data-tilt>
+                    <div class="contact-icon-circle">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="28" height="28"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    </div>
+                    <h4>Call Us</h4>
+                    <a href="tel:+919003296476">+91 9003296476</a><br>
+                    <a href="tel:+919566086476">+91 9566086476</a>
+                </div>
+            </div>
+
+            <div class="contact-cta reveal stagger-4">
+                <a href="https://maps.app.goo.gl/rGToqWmzkxweGCoD8" target="_blank" class="btn btn-primary">
+                    <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    Open in Google Maps
+                </a>
+            </div>
+
+            <!-- Map Embed -->
+            <div class="map-container reveal stagger-5">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3892.6!2d80.0!3d12.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDM2JzAwLjAiTiA4MMKwMDAnMDAuMCJF!5e0!3m2!1sen!2sin!4v1700000000000"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                    title="Calvalue Office Location Map">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHATSAPP FAB ===== -->
+    <a href="https://wa.me/919003296476" target="_blank" class="whatsapp-fab" id="whatsappBtn" aria-label="Chat with us on WhatsApp">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <span class="whatsapp-label">Chat with us</span>
+    </a>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+    </button>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container footer-inner">
+            <p class="footer-copy">&copy; 2026 Calvalue Techno Services OPC Pvt Ltd. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="#accreditation">Accreditation</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://wa.me/919003296476" target="_blank" aria-label="WhatsApp">
+                    <svg fill="currentColor" viewBox="0 0 24 24" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                </a>
+                <a href="mailto:salescalvalue@gmail.com" aria-label="Email">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                </a>
+                <a href="tel:+919003296476" aria-label="Phone">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // ========================
+        // 1. PARTICLE SYSTEM
+        // ========================
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouseX = 0, mouseY = 0;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random() * 0.4 + 0.1;
+                this.hue = Math.random() > 0.5 ? 190 : 270; // cyan or purple
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Mouse interaction
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 150) {
+                    this.x -= dx * 0.005;
+                    this.y -= dy * 0.005;
+                    this.opacity = Math.min(this.opacity + 0.02, 0.7);
+                } else {
+                    this.opacity = Math.max(this.opacity - 0.005, 0.1);
+                }
+
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `hsla(${this.hue}, 100%, 70%, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        // Initialize particles (fewer on mobile)
+        const particleCount = window.innerWidth < 768 ? 40 : 80;
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function drawConnections() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(0, 212, 255, ${0.08 * (1 - dist / 120)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            drawConnections();
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        // ========================
+        // 2. CURSOR GLOW (Desktop)
+        // ========================
+        const cursorGlow = document.getElementById('cursorGlow');
+        if (window.innerWidth > 768) {
+            document.addEventListener('mousemove', (e) => {
+                cursorGlow.style.left = e.clientX + 'px';
+                cursorGlow.style.top = e.clientY + 'px';
+            });
+        }
+
+        // ========================
+        // 3. HEADER SCROLL
+        // ========================
+        const header = document.getElementById('mainHeader');
+        const scrollProgress = document.getElementById('scrollProgress');
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', () => {
+            // Header
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            // Scroll progress
+            const scrolled = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrolled / maxScroll) * 100;
+            scrollProgress.style.width = progress + '%';
+
+            // Scroll to top button
+            if (scrolled > 400) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ========================
+        // 4. MOBILE MENU
+        // ========================
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const navOverlay = document.getElementById('navOverlay');
+        const navLinks = document.querySelectorAll('#navMenu a');
+
+        function toggleMenu() {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        navOverlay.addEventListener('click', toggleMenu);
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // ========================
+        // 5. ACTIVE NAV LINK
+        // ========================
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 150 && rect.bottom > 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active-link');
+                const href = link.getAttribute('href');
+                if (href === '#' + current || (current === 'heroSection' && href === '#')) {
+                    link.classList.add('active-link');
+                }
+            });
+        });
+
+        // ========================
+        // 6. SCROLL REVEAL (IntersectionObserver)
+        // ========================
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -60px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ========================
+        // 7. ANIMATED COUNTERS
+        // ========================
+        const counters = document.querySelectorAll('[data-count]');
+        let countersDone = false;
+
+        function animateCounters() {
+            if (countersDone) return;
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const suffix = counter.textContent.includes('%') ? '%' : '+';
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+
+                function updateCounter() {
+                    current += step;
+                    if (current >= target) {
+                        counter.textContent = target + suffix;
+                        return;
+                    }
+                    counter.textContent = Math.floor(current) + suffix;
+                    requestAnimationFrame(updateCounter);
+                }
+                updateCounter();
+            });
+            countersDone = true;
+        }
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) statsObserver.observe(heroStats);
+
+        // ========================
+        // 8. 3D TILT EFFECT
+        // ========================
+        const tiltElements = document.querySelectorAll('[data-tilt]');
+
+        tiltElements.forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = ((y - centerY) / centerY) * -4;
+                const rotateY = ((x - centerX) / centerX) * 4;
+
+                el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+            });
+
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+                el.style.transition = 'transform 0.5s ease';
+            });
+
+            el.addEventListener('mouseenter', () => {
+                el.style.transition = 'transform 0.1s ease';
+            });
+        });
+
+        // ========================
+        // 9. SMOOTH SCROLL for Nav
+        // ========================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    const headerHeight = header.offsetHeight;
+                    const targetPos = target.getBoundingClientRect().top + window.scrollY - headerHeight - 20;
+                    window.scrollTo({ top: targetPos, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ========================
+        // 10. PARALLAX AURORA ORBS
+        // ========================
+        const auroraElements = document.querySelectorAll('.hero-aurora, .section-orb');
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            auroraElements.forEach((el, i) => {
+                const speed = (i % 3 + 1) * 0.03;
+                el.style.transform = `translateY(${scrollY * speed}px)`;
+            });
+        });
+
+        // ========================
+        // 11. TYPING EFFECT
+        // ========================
+        // (The gradient text animation on hero handles the dynamic feel)
+
+    });
+    </script>
+</body>
+</html>
